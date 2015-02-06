@@ -1,5 +1,5 @@
 # pk.scrollTextSwap
-This is a little module I wrote to support some in-article scrolling effects for eng.localytics.com.
+This is a little module I wrote to support some in-article scrolling effects for http://eng.localytics.com.
 
 <img src="http://fat.gfycat.com/SomeRemoteAngora.gif">
 
