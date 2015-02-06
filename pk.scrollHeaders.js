@@ -11,6 +11,14 @@ var scrollHeaders = (function() {
 
   var module = {};
 
+  // turn on test mode, attach priv methods to
+  // module
+  // function activateTestMode() {
+  //   module.updateHeaderPositions = updateHeaderPositions;
+  //   module.findNearestHeader = findNearestHeader;
+  //   module.updateTarget = updateTarget;
+  // }
+
   // simple throttle from @jonathansampson
   function throttle(callback, limit) {
     var wait = false;
