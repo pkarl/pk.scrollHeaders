@@ -30,7 +30,7 @@ var scrollHeaders = (function() {
     target.dispatchEvent(event);
   }
 
-  // loop over headers and record positions, returns arr
+  // loop over matches elements and record positions, returns arr
   function updateHeaderPositions(headers) {
     var posArr = [];
     Array.prototype.forEach.call(headers, function(el, i){
@@ -39,7 +39,7 @@ var scrollHeaders = (function() {
     return posArr;
   }
 
-  // find nearest header to pageYOffset & returns index
+  // find nearest selected element to pageYOffset, returns index
   function findNearestHeader(headerPositions, scrollPos) {
     var index = 0;
     while (headerPositions[index] < scrollPos) {
@@ -48,24 +48,25 @@ var scrollHeaders = (function() {
     return index > 0 ? index - 1 : 0;
   }
 
-  // swaps text from nearest header --> target
+  // swaps text from nearest selected element --> target elements
   function updateTarget(headers, index, targets) {
     Array.prototype.forEach.call(targets, function(el, i){
       el.textContent = headers[index].textContent;
     });
   }
 
-  // accepts selectors for headers and target, also accepts callback
-  // which is called on the scroll event (throttled to 50ms). cb is passed scrollPos
-  module.init = function(headerSelector, textTargetSelector, scrollCallback) {
+  // accepts selectors for watched elements and targets
+  // optional callback, called on the scroll event (throttled to 50ms).
+  // callback is passed the current scrollPos
+  module.init = function(elSelector, targetSelector, scrollCallback) {
 
-    var headers = document.querySelectorAll(headerSelector);
-    var textTargets = document.querySelectorAll(textTargetSelector);
+    var elWatched = document.querySelectorAll(elSelector);
+    var elTargets = document.querySelectorAll(targetSelector);
 
     var headerPositions, scrollPos, index;
 
     window.addEventListener('resize', function() {
-      headerPositions = updateHeaderPositions(headers);
+      headerPositions = updateHeaderPositions(elWatched);
     });
 
     trigger(window, 'resize');
@@ -73,7 +74,7 @@ var scrollHeaders = (function() {
     window.addEventListener('scroll', throttle(function() {
       scrollPos = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
       index = findNearestHeader(headerPositions, scrollPos);
-      updateTarget(headers, index, textTargets);
+      updateTarget(elWatched, index, elTargets);
 
       if (typeof scrollCallback == 'function') {
         scrollCallback.call(null, scrollPos);
