@@ -1,12 +1,12 @@
 {
-  "name": "pk.scrollHeaders",
-  "main": "pk.scrollHeaders.js",
+  "name": "pk.scrollTextSwap",
+  "main": "pk.scrollTextSwap.js",
   "version": "1.0.0",
-  "homepage": "https://github.com/pkarl/pk.scrollHeaders",
+  "homepage": "https://github.com/pkarl/pk.scrollTextSwap",
   "authors": [
     "Pete Karl II <pete.karl@gmail.com>"
   ],
-  "description": "as you scroll, take text from headers and place it elsewhere (like in a nav bar)",
+  "description": "as you scroll, take text from selected elements and place it elsewhere (like in a nav bar)",
   "keywords": [
     "scroll",
     "effects"
