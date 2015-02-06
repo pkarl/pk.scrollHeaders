@@ -14,9 +14,9 @@ var scrollHeaders = (function() {
   // turn on test mode, attach priv methods to
   // module
   // function activateTestMode() {
-  //   module.updateHeaderPositions = updateHeaderPositions;
-  //   module.findNearestHeader = findNearestHeader;
-  //   module.updateTarget = updateTarget;
+  //   module.getWatchedPositions = getWatchedPositions;
+  //   module.findNearestWatchedElement = findNearestWatchedElement;
+  //   module.updateTargetText = updateTargetText;
   // }
 
   // simple throttle from @jonathansampson
@@ -39,7 +39,7 @@ var scrollHeaders = (function() {
   }
 
   // loop over matches elements and record positions, returns arr
-  function updateHeaderPositions(headers) {
+  function getWatchedPositions(headers) {
     var posArr = [];
     Array.prototype.forEach.call(headers, function(el, i){
       posArr.push(el.offsetTop);
@@ -48,16 +48,16 @@ var scrollHeaders = (function() {
   }
 
   // find nearest selected element to pageYOffset, returns index
-  function findNearestHeader(headerPositions, scrollPos) {
+  function findNearestWatchedElement(elPositions, scrollPos) {
     var index = 0;
-    while (headerPositions[index] < scrollPos) {
+    while (elPositions[index] < scrollPos) {
       index++;
     }
     return index > 0 ? index - 1 : 0;
   }
 
   // swaps text from nearest selected element --> target elements
-  function updateTarget(headers, index, targets) {
+  function updateTargetText(headers, index, targets) {
     Array.prototype.forEach.call(targets, function(el, i){
       el.textContent = headers[index].textContent;
     });
@@ -71,18 +71,18 @@ var scrollHeaders = (function() {
     var elWatched = document.querySelectorAll(elSelector);
     var elTargets = document.querySelectorAll(targetSelector);
 
-    var headerPositions, scrollPos, index;
+    var elPositions, scrollPos, index;
 
     window.addEventListener('resize', function() {
-      headerPositions = updateHeaderPositions(elWatched);
+      elPositions = getWatchedPositions(elWatched);
     });
 
     trigger(window, 'resize');
 
     window.addEventListener('scroll', throttle(function() {
       scrollPos = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-      index = findNearestHeader(headerPositions, scrollPos);
-      updateTarget(elWatched, index, elTargets);
+      index = findNearestWatchedElement(elPositions, scrollPos);
+      updateTargetText(elWatched, index, elTargets);
 
       if (typeof scrollCallback == 'function') {
         scrollCallback.call(null, scrollPos);

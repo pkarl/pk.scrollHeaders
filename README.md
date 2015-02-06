@@ -5,8 +5,7 @@ This is a little module I wrote to support some in-article scrolling effects for
 
 ### Notes
 * IE9+ compat
-* There are no tests
-* There's no minified version
+* There are no tests, because it's really just comparing numbers
 * It's not on bower registry
 
 ## Usage:
