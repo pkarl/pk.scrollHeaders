@@ -1,7 +1,7 @@
 # pk.scrollHeaders
 This is a little module I wrote to support some in-article scrolling effects for eng.localytics.com.
 
--><iframe src="http://gfycat.com/ifr/SomeRemoteAngora" frameborder="0" scrolling="no" width="598" height="280" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe><-
+<img src="http://zippy.gfycat.com/SomeRemoteAngora.gif">
 
 ### Notes
 * It requires jQuery at the moment. It could pretty easily be refactored out, though.
