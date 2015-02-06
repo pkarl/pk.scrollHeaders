@@ -4,6 +4,7 @@ This is a little module I wrote to support some in-article scrolling effects for
 <img src="http://fat.gfycat.com/SomeRemoteAngora.gif">
 
 ### Notes
+* IE9+ compat
 * It requires jQuery at the moment. It could pretty easily be refactored out, though.
 * There are no tests
 * There's no minified version
